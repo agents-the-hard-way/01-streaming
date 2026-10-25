@@ -1,36 +1,64 @@
-## Step 2: (replace-me: STEP-NAME)
+## Step 2: The blocking call
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+Time to test hypothesis 1.
 
-### 📖 Theory: (replace-me: Theory title)
+### 📖 Theory: `messages.create()`
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+`client.messages.create()` sends one request and returns a promise of the
+complete `Message`. Its `content` is an array of **content blocks** — for
+example a `text` block, and a `tool_use` block when the model wants to call
+one of your tools. `stop_reason` says why generation ended.
 
-(replace-me: Optional theory or background information relevant to this step)
+Note what this lesson does **not** do: it never executes the tool. You only
+look at what the model asks for. Running tools comes in later lessons.
 
-(replace-me: OPTIONAL Reference images from the `.github/images/` directory to support any part of the content)
+Useful references:
 
-<img width="200" alt="descriptive alt text" src="../images/inflatocat.png" />
+- [Tool use overview](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview)
+- [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript)
+- [Models overview](https://docs.claude.com/en/docs/about-claude/models/overview) —
+  use a small, cheap Claude Haiku model; look up its current ID here.
 
+### ⌨️ Activity: write `streamingBefore.ts`
 
-### ⌨️ Activity: (replace-me: Activity title)
+1. Create `streamingBefore.ts` in the repository root. It should:
+   - load the API key (`import 'dotenv/config'` handles a local `.env`; in a
+     Codespace the secret is already in the environment),
+   - create an `Anthropic` client,
+   - call `client.messages.create()` with your chosen model, a
+     `max_tokens` limit, the `tools` from `tools.ts`, and the prompt from
+     step 1 as a single user message,
+   - print the returned `content` as pretty JSON.
 
-1. (replace-me: First instruction)
+   Write it yourself. Copilot in this repo is set up as a mentor — ask it to
+   explain things, not to write the file.
 
-    (replace-me: Make sure to properly indent any multiline instructions)
+1. Run it and save the output:
 
-1. (replace-me: Second instruction)
+   ```bash
+   pnpm run before | tee runs/before.txt
+   ```
 
-1. (replace-me: Additional instructions as needed)
+   Watch the terminal while it runs. Does it match what you predicted?
+
+1. Commit and push both files:
+
+   ```bash
+   git add streamingBefore.ts runs/before.txt
+   git commit -m "Step 2: blocking call"
+   git push
+   ```
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
+- `Could not resolve authentication method`: the secret isn't reaching the
+  Codespace. Check that it's named exactly `ANTHROPIC_API_KEY` and has this
+  repository selected, then rebuild the Codespace (**Command Palette →
+  Codespaces: Rebuild Container**).
+- The check looks for `"type": "tool_use"` and `"name": "read_file"` in
+  `runs/before.txt`. If the model answered with text only, check that you
+  passed `tools` in the request.
+- Do not use `messages.stream()` in this file — that is step 4.
 
 </details>

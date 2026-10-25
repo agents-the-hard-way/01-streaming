@@ -1,35 +1,39 @@
-## Step 3: (replace-me: STEP-NAME)
+## Step 3: Predict the stream
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+You've seen the finished message. Now: what happens on the way there?
 
-### 📖 Theory: (replace-me: Theory title)
+### 📖 Theory: streaming
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+With `stream: true`, the API sends the response as a sequence of
+[server-sent events](https://docs.claude.com/en/docs/build-with-claude/streaming)
+while the model is still generating it: a message starts, content blocks
+start, receive **deltas**, and stop, and the message ends. The TypeScript
+SDK wraps this in `client.messages.stream()`, which lets you listen to
+events as they happen and still gives you the assembled message at the end
+with `finalMessage()`.
 
-(replace-me: Optional theory or background information relevant to this step)
+Text arrives as text deltas. Tool calls are less obvious — that is what you
+are about to predict.
 
-### ⌨️ Activity: (replace-me: Activity title)
+### ⌨️ Activity: write your second hypothesis
 
-1. (replace-me: First instruction)
+1. Read the streaming docs linked above — the event types, not code samples.
+1. In `NOTEBOOK.md`, under **2. Hypothesis: streaming `messages.stream()`**,
+   predict for the same request:
+   - what you'll see in the terminal, and when,
+   - in what order the events arrive,
+   - how the `tool_use` block's JSON arguments reach you,
+   - whether the final assembled message differs from `runs/before.txt`.
 
-   (replace-me: Make sure to properly indent any multiline instructions)
+   At least 20 words.
 
-1. (replace-me: Second instruction)
-
-   (replace-me: Optionally reference images from the `.github/images/` directory to support any part of the content)
-
-   <img width="200" alt="descriptive alt text" src="../images/jetpacktocat.png" />
-
-1. (replace-me: Additional instructions as needed)
+1. Commit and push `NOTEBOOK.md`.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
+- Keep the heading `## 2. Hypothesis: ...` unchanged.
+- Don't edit section 1 to match what you saw in step 2 — a corrected
+  hypothesis is no longer a hypothesis. Put that in your conclusions later.
 
 </details>

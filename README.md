@@ -1,46 +1,64 @@
-# (replace-me: Exercise title)
+# Agents the Hard Way — 01: Token-level streaming
 
-_(replace-me: One-line description of the exercise)_
+_Make the same request to Claude twice, blocking and streamed, and see for
+yourself how a response — and a tool call — actually arrives._
 
 ## Welcome
 
-- **Who is this for**: (replace-me: Target audience description)
-- **What you'll learn**: (replace-me: Learning objectives)
-- **What you'll build**: (replace-me: Description of what the learner will create)
-- **Prerequisites**:
-  - (replace-me: Prerequisite skill/exercise)
-  - (replace-me: Other prerequisites)
+**Agents the Hard Way** teaches how AI agents work by building them on the
+raw Claude Messages API, with no agent framework in between. Every lesson
+follows the same loop: **predict → run → compare**. You write a hypothesis
+before you run anything, capture real output, and explain the difference.
 
-- **How long**: This exercise takes less than (replace-me: estimated time) to complete.
+- **Who is this for**: developers comfortable with TypeScript who want to
+  understand what agent frameworks do for them, by doing it by hand first.
+- **What you'll learn**: what `messages.create()` returns and when; how
+  `messages.stream()` delivers the same response as events; how a tool
+  call's JSON arguments arrive in fragments and get reassembled.
+- **What you'll build**: two short TypeScript scripts and a lab notebook
+  comparing your predictions with what really happened.
+- **Prerequisites**:
+  - TypeScript and Node.js basics.
+  - An [Anthropic API key](https://console.anthropic.com/settings/keys).
+    This lesson makes two short requests and costs well under one US cent.
+- **How long**: about 45 minutes.
 
 In this exercise, you will:
 
-1. (replace-me: Learning objective step #1)
-1. (replace-me: Learning objective step #2)
-1. (replace-me: Learning objective step #N)
-
+1. Set up a Codespace and predict what a blocking call returns.
+2. Write the blocking call and capture its output.
+3. Predict how the same request looks when streamed.
+4. Write the streaming call and prove the tool-call fragments reassemble.
+5. Compare predictions with reality and write your conclusions.
 
 ### How to start this exercise
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+Copy the exercise to your account, give the bot **about 20 seconds** to
+prepare the first step, then **refresh the page**.
 
-<!--  (replace-me: Make sure to edit the URL with proper template_owner, template_name, repo name and description)  -->
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=exercise-template&owner=%40me&name=skills-<replace-me>&description=Exercise:+Replace+me&visibility=public)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=agents-the-hard-way&template_name=01-streaming&owner=%40me&name=agents-the-hard-way-01-streaming&description=Agents%20the%20Hard%20Way%3A%2001%20Token-level%20streaming&visibility=public)
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
 When copying the exercise, we recommend the following settings:
 
-- For owner, choose your personal account or an organization to host the repository.
+- For owner, choose your personal account.
+- Keep the repository **public** — GitHub Actions minutes are free for
+  public repositories, and the exercise bot runs on Actions.
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
+If the exercise isn't ready in 20 seconds, check the **Actions** tab of
+your copy:
 
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
-
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
-
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+- If a job is still running, give it a moment.
+- If a job failed, please
+  [open an issue](https://github.com/agents-the-hard-way/01-streaming/issues)
+  here. Nice, you found a bug! 🐛
 
 </details>
 
+---
+
+Reference solutions for every lesson:
+[agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions).
+Try it yourself first — that's the whole point.

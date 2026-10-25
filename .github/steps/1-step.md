@@ -1,36 +1,79 @@
-## Step 1: (replace-me: STEP-NAME)
+## Step 1: Set up, then predict
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+Welcome to **Agents the Hard Way**. Every lesson works on the raw Claude
+Messages API, with no agent framework in between, so you see exactly what
+the model sends back and when.
 
-(replace-me: OPTIONAL Reference images from the `.github/images/` directory to support any part of the content)
+This lesson asks one question: **how does a response actually arrive?** You
+will make the same request twice — once with a blocking call, once streamed
+— and compare what you see.
 
-<img width="200" alt="descriptive alt text" src="../images/inspectocat.png" />
+### 📖 Theory: hypothesis first
 
-### 📖 Theory: (replace-me: Theory title)
+Each lesson follows the same loop: **predict → run → compare**. You write
+down what you expect *before* running anything, then capture real output,
+then reconcile the two. A wrong prediction you can explain teaches more than
+a right one you guessed. That is why the exercise checks your notebook, not
+just your code.
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+### ⌨️ Activity: open your environment
 
-(replace-me: Optional theory or background information relevant to this step)
+1. Add your Anthropic API key as a Codespaces secret, so it never sits in a
+   file in this repo:
+   - Go to **github.com → Settings → Codespaces → Secrets → New secret**.
+   - Name: `ANTHROPIC_API_KEY`. Value: your key from the
+     [Anthropic Console](https://console.anthropic.com/settings/keys).
+   - Under **Repository access**, select this repository.
 
+   > [!NOTE]
+   > This whole lesson makes two short requests to a small model and costs
+   > well under one US cent.
 
-### ⌨️ Activity: (replace-me: Activity title)
+1. Open a Codespace on your copy of the exercise:
 
-1. (replace-me: First instruction)
+   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
 
-    (replace-me: Make sure to properly indent any multiline instructions)
+   Confirm the **Repository** field shows your copy (`{{full_repo_name}}`),
+   not `agents-the-hard-way/01-streaming`.
 
-1. (replace-me: Second instruction)
+1. Wait for VS Code to load. Dependencies install automatically, and
+   `NOTEBOOK.md` opens on its own.
 
-1. (replace-me: Additional instructions as needed)
+### ⌨️ Activity: write your first hypothesis
+
+Look at `tools.ts` (the tools you will offer the model) and
+`sandbox/notes.txt` (the file you will ask it to read). You will send this
+prompt, with those tools, using `client.messages.create()`:
+
+> First say one sentence about what you're about to do, then read the file
+> at path sandbox/notes.txt.
+
+1. In `NOTEBOOK.md`, under **1. Hypothesis: blocking `messages.create()`**,
+   replace the placeholder line with your prediction. Cover at least:
+   - when the call returns, and what your terminal shows while it waits,
+   - what the returned content looks like — which blocks, in what order,
+   - whether the model will actually read the file.
+
+   At least 20 words. Wrong is fine; vague is not.
+
+1. Commit and push to `main`:
+
+   ```bash
+   git add NOTEBOOK.md
+   git commit -m "Step 1: hypothesis for create()"
+   git push
+   ```
+
+1. Come back to this issue. I'll check your notebook within a minute.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
+- Keep the heading line `## 1. Hypothesis: ...` unchanged — that is how the
+  check finds your section.
+- The placeholder line must be gone; HTML comments `<!-- -->` don't count
+  as words.
+- If nothing happens after pushing, open the **Actions** tab and look at the
+  latest **Step 1** run.
 
 </details>
