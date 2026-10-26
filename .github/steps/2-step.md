@@ -19,16 +19,16 @@ Useful references:
 - [Models overview](https://docs.claude.com/en/docs/about-claude/models/overview) —
   use a small, cheap Claude Haiku model; look up its current ID here.
 
-### ⌨️ Activity: write `streamingBefore.ts`
+### ⌨️ Activity: complete `streamingBefore.ts`
 
-1. Create `streamingBefore.ts` in the repository root. It should:
-   - load the API key (`import 'dotenv/config'` handles a local `.env`; in a
-     Codespace the secret is already in the environment),
-   - create an `Anthropic` client,
-   - call `client.messages.create()` with your chosen model, a
+1. Open `streamingBefore.ts`. The imports and the `Anthropic` client are
+   already there — the client reads `ANTHROPIC_API_KEY` from the
+   environment (your Codespaces secret, or a local `.env` via
+   `dotenv/config`). Replace the `TODO` so the script:
+   - calls `client.messages.create()` with your chosen model, a
      `max_tokens` limit, the `tools` from `tools.ts`, and the prompt from
      step 1 as a single user message,
-   - print the returned `content` as pretty JSON.
+   - prints the returned `content` as pretty JSON.
 
    Write it yourself. Copilot in this repo is set up as a mentor — ask it to
    explain things, not to write the file.

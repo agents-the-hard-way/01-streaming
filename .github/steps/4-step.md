@@ -14,10 +14,11 @@ Same request as step 2, observed as it is generated.
 
 See [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/streaming).
 
-### ⌨️ Activity: write `streamingAfter.ts`
+### ⌨️ Activity: complete `streamingAfter.ts`
 
-1. Create `streamingAfter.ts`. Same client, model, tools and prompt as
-   step 2, but using `client.messages.stream()`. It should:
+1. Open `streamingAfter.ts` and replace the `TODO`. Same model, tools and
+   prompt as step 2, but using `client.messages.stream()`. The script
+   should:
    - write each text delta to stdout as it arrives (without a newline after
      each one, so you see it flow),
    - for every `input_json_delta`, print **one line** in exactly this
