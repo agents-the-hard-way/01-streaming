@@ -1,9 +1,10 @@
 import type Anthropic from '@anthropic-ai/sdk';
+import { z } from 'zod';
 
-// Tool definitions sent to Claude with every request in this lesson.
-// Provided for you — this lesson is about how a response arrives, not about
-// executing tools. Neither script you write here ever runs a tool: you only
-// observe the tool call the model asks for.
+export const ReadFileInput = z.object({ path: z.string() });
+export const WriteFileInput = z.object({ path: z.string(), content: z.string() });
+export const ListFilesInput = z.object({ directory: z.string().optional() });
+
 export const tools: Anthropic.Tool[] = [
   {
     name: 'read_file',

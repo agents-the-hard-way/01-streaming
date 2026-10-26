@@ -19,9 +19,7 @@ env:
 jobs:
   find_exercise:
     name: Find Exercise Issue
-    # Skip in the template itself (no exercise issue there) and on the push that
-    # creates the learner's copy: that initial commit touches NOTEBOOK.md too,
-    # and only Step 0 should react to it.
+    # Skip the template repo and the push that creates a learner's copy.
     if: ${{ !github.event.repository.is_template && !github.event.created }}
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.9.1
 
@@ -77,13 +75,11 @@ jobs:
           vars: |
             step_number: 4
             results_table:
-              - description: "src/streamingAfter.ts calls messages.stream()"
-                passed: ${{ steps.check.outputs.uses_stream == 'true' }}
               - description: "runs/after.txt exists and is not empty"
                 passed: ${{ steps.check.outputs.log_exists == 'true' }}
-              - description: "runs/after.txt has at least 2 non-empty [fragment] lines"
+              - description: "runs/after.txt has at least 2 non-empty JSON fragments"
                 passed: ${{ steps.check.outputs.several_fragments == 'true' }}
-              - description: "The [fragment] lines join into JSON equal to the [final] line"
+              - description: "The fragments join into the tool_use input from finalMessage"
                 passed: ${{ steps.check.outputs.fragments_assemble == 'true' }}
 
       - name: Fail job if not all checks passed

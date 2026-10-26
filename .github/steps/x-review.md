@@ -1,22 +1,14 @@
 ## Review
 
-_You've completed **01 — Token-level streaming** of Agents the Hard Way._
+You've completed **01: Token-level streaming**.
 
-<img src="https://octodex.github.com/images/jetpacktocat.png" alt="celebrate" width=200 align=right>
+- You saw that `messages.create()` returns only after the whole response is
+  generated.
+- You saw the same response arrive as events with `messages.stream()`.
+- You saw tool arguments arrive as JSON fragments that join into the final
+  `tool_use` input.
 
-Here's what you did:
+Next: **02: System prompt as a behavior lever** (coming soon).
 
-- Predicted, then observed, a blocking `messages.create()` call with tools.
-- Predicted, then observed, the same request with `messages.stream()`.
-- Saw tool arguments arrive as partial JSON and proved they reassemble into
-  the final `tool_use` input.
-- Wrote down what that means, in your own words, in `NOTEBOOK.md`.
-
-### What's next?
-
-- **02 — System prompt as a behavior lever** (coming soon): same tools, same
-  task, different `system` prompt — and different decisions.
-- Compare your code with the reference solution in
-  [agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming).
-- [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/streaming)
-  in the Claude docs.
+Reference solution:
+[agents-the-hard-way-solutions/lessons/01-streaming](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming).

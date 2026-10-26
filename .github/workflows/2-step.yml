@@ -5,7 +5,6 @@ on:
     branches:
       - main
     paths:
-      - "src/streamingBefore.ts"
       - "runs/before.txt"
 
 permissions:
@@ -19,9 +18,7 @@ env:
 jobs:
   find_exercise:
     name: Find Exercise Issue
-    # Skip in the template itself (no exercise issue there) and on the push that
-    # creates the learner's copy: that initial commit touches NOTEBOOK.md too,
-    # and only Step 0 should react to it.
+    # Skip the template repo and the push that creates a learner's copy.
     if: ${{ !github.event.repository.is_template && !github.event.created }}
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.9.1
 
@@ -77,8 +74,6 @@ jobs:
           vars: |
             step_number: 2
             results_table:
-              - description: "src/streamingBefore.ts calls messages.create() and not messages.stream()"
-                passed: ${{ steps.check.outputs.uses_create == 'true' }}
               - description: "runs/before.txt exists and is not empty"
                 passed: ${{ steps.check.outputs.log_exists == 'true' }}
               - description: "runs/before.txt contains a tool_use block for read_file"

@@ -1,25 +1,38 @@
 import 'dotenv/config';
 import Anthropic from '@anthropic-ai/sdk';
-import type { MessageStream } from '@anthropic-ai/sdk/lib/MessageStream';
-import { printFinalToolInput, printFragment, printText } from './print.js';
-import { request } from './request.js';
+import { tools } from './tools.js';
 
 const client = new Anthropic();
 
-function startStream(): MessageStream | undefined {
-  // ✏️ TODO 1: replace `undefined` with a call that sends the same `request`
-  // as a stream.
-  return undefined;
+async function main() {
+  const stream = client.messages.stream({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 1024,
+    tools,
+    messages: [
+      {
+        role: 'user',
+        content:
+          "First say one sentence about what you're about to do, then read the file at path sandbox/notes.txt.",
+      },
+    ],
+  });
+
+  stream.on('text', (textDelta) => {
+    process.stdout.write(textDelta); // streamed token by token, live
+  });
+
+  stream.on('contentBlock', (block) => {
+    console.log('\n[contentBlock complete]:', JSON.stringify(block));
+  });
+
+  stream.on('streamEvent', (event) => {
+    // TODO: log each piece of the tool call's JSON input as it arrives
+  });
+
+  const finalMessage = await stream.finalMessage();
+  console.log('\n\n--- finalMessage (assembled) ---');
+  console.log(JSON.stringify(finalMessage.content, null, 2));
 }
 
-const stream = startStream();
-if (!stream) throw new Error('TODO 1 in src/streamingAfter.ts is still open.');
-
-stream.on('text', printText);
-
-stream.on('streamEvent', (event) => {
-  // ✏️ TODO 2: when `event` carries a piece of the tool call's JSON
-  // arguments, pass that piece to printFragment().
-});
-
-printFinalToolInput(await stream.finalMessage());
+main();

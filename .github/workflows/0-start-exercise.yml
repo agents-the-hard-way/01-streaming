@@ -20,7 +20,7 @@ jobs:
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.9.1
     with:
       exercise-title: "Agents the Hard Way: 01 Token-level streaming"
-      intro-message: "Make the same request to Claude twice, blocking and streamed, and see for yourself how a response and its tool call actually arrive. Predict first, run second, compare last."
+      intro-message: "Send the same request to Claude twice, blocking and streamed, and compare how the response arrives."
 
   post_next_step_content:
     name: Post next step content

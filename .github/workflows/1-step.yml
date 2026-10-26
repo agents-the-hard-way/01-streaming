@@ -18,9 +18,7 @@ env:
 jobs:
   find_exercise:
     name: Find Exercise Issue
-    # Skip in the template itself (no exercise issue there) and on the push that
-    # creates the learner's copy: that initial commit touches NOTEBOOK.md too,
-    # and only Step 0 should react to it.
+    # Skip the template repo and the push that creates a learner's copy.
     if: ${{ !github.event.repository.is_template && !github.event.created }}
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.9.1
 
@@ -76,9 +74,9 @@ jobs:
           vars: |
             step_number: 1
             results_table:
-              - description: "NOTEBOOK.md still has the '## 1. Hypothesis' heading"
+              - description: "NOTEBOOK.md has the '## 1. Hypothesis' heading"
                 passed: ${{ steps.check.outputs.section_found == 'true' }}
-              - description: "Hypothesis 1 is written (placeholder replaced, at least 20 words)"
+              - description: "Hypothesis 1 is written (at least 20 words)"
                 passed: ${{ steps.check.outputs.section_filled == 'true' }}
 
       - name: Fail job if not all checks passed
