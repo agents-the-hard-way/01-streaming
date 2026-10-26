@@ -41,7 +41,7 @@ just your code.
 
 ### ⌨️ Activity: write your first hypothesis
 
-Look at `tools.ts` (the tools you will offer the model) and
+Look at `src/tools.ts` (the tools you will offer the model) and
 `sandbox/notes.txt` (the file you will ask it to read). You will send this
 prompt, with those tools, using `client.messages.create()`:
 

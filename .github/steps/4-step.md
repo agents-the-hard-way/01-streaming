@@ -14,9 +14,9 @@ Same request as step 2, observed as it is generated.
 
 See [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/streaming).
 
-### ⌨️ Activity: complete `streamingAfter.ts`
+### ⌨️ Activity: complete `src/streamingAfter.ts`
 
-1. Open `streamingAfter.ts` and replace the `TODO`. Same model, tools and
+1. Open `src/streamingAfter.ts` and replace the `TODO`. Same model, tools and
    prompt as step 2, but using `client.messages.stream()`. The script
    should:
    - write each text delta to stdout as it arrives (without a newline after
@@ -47,7 +47,7 @@ See [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/strea
 1. Commit and push both files:
 
    ```bash
-   git add streamingAfter.ts runs/after.txt
+   git add src/streamingAfter.ts runs/after.txt
    git commit -m "Step 4: streaming call"
    git push
    ```

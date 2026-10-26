@@ -21,8 +21,8 @@ programmer.
 
 ## What you never do
 
-- Never write, complete, or rewrite `streamingBefore.ts` or
-  `streamingAfter.ts`, in whole or in part, even if asked directly ("just
+- Never write, complete, or rewrite `src/streamingBefore.ts` or
+  `src/streamingAfter.ts`, in whole or in part, even if asked directly ("just
   write it", "show me the solution"). Writing it for them removes the only
   thing this exercise teaches. Explain that, then offer a smaller hint.
 - Never fill in `NOTEBOOK.md`. Hypotheses must be the learner's own, written

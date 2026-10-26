@@ -19,14 +19,14 @@ Useful references:
 - [Models overview](https://docs.claude.com/en/docs/about-claude/models/overview) —
   use a small, cheap Claude Haiku model; look up its current ID here.
 
-### ⌨️ Activity: complete `streamingBefore.ts`
+### ⌨️ Activity: complete `src/streamingBefore.ts`
 
-1. Open `streamingBefore.ts`. The imports and the `Anthropic` client are
+1. Open `src/streamingBefore.ts`. The imports and the `Anthropic` client are
    already there — the client reads `ANTHROPIC_API_KEY` from the
    environment (your Codespaces secret, or a local `.env` via
    `dotenv/config`). Replace the `TODO` so the script:
    - calls `client.messages.create()` with your chosen model, a
-     `max_tokens` limit, the `tools` from `tools.ts`, and the prompt from
+     `max_tokens` limit, the `tools` from `src/tools.ts`, and the prompt from
      step 1 as a single user message,
    - prints the returned `content` as pretty JSON.
 
@@ -44,7 +44,7 @@ Useful references:
 1. Commit and push both files:
 
    ```bash
-   git add streamingBefore.ts runs/before.txt
+   git add src/streamingBefore.ts runs/before.txt
    git commit -m "Step 2: blocking call"
    git push
    ```

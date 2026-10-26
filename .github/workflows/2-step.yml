@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "streamingBefore.ts"
+      - "src/streamingBefore.ts"
       - "runs/before.txt"
 
 permissions:
@@ -77,9 +77,7 @@ jobs:
           vars: |
             step_number: 2
             results_table:
-              - description: "streamingBefore.ts exists"
-                passed: ${{ steps.check.outputs.code_exists == 'true' }}
-              - description: "streamingBefore.ts calls messages.create() and not messages.stream()"
+              - description: "src/streamingBefore.ts calls messages.create() and not messages.stream()"
                 passed: ${{ steps.check.outputs.uses_create == 'true' }}
               - description: "runs/before.txt exists and is not empty"
                 passed: ${{ steps.check.outputs.log_exists == 'true' }}

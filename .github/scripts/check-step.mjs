@@ -52,11 +52,10 @@ function checkHypothesis(number) {
 const stripComments = (code) => code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
 
 function checkBlocking() {
-  const code = read('streamingBefore.ts');
+  const code = read('src/streamingBefore.ts');
   const log = read('runs/before.txt');
   const source = code === null ? '' : stripComments(code);
   return {
-    code_exists: code !== null,
     uses_create: /\.messages\.create\s*\(/.test(source) && !/\.messages\.stream\s*\(/.test(source),
     log_exists: log !== null && log.trim().length > 0,
     log_has_tool_use:
@@ -99,12 +98,11 @@ function jsonEqual(a, b) {
 }
 
 function checkStreaming() {
-  const code = read('streamingAfter.ts');
+  const code = read('src/streamingAfter.ts');
   const log = read('runs/after.txt');
   const source = code === null ? '' : stripComments(code);
   const parsed = log === null ? null : parseStreamingLog(log);
   return {
-    code_exists: code !== null,
     uses_stream: /\.messages\.stream\s*\(/.test(source),
     log_exists: log !== null && log.trim().length > 0,
     several_fragments: parsed !== null && parsed.nonEmptyFragments >= 2,
