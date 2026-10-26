@@ -1,0 +1,16 @@
+{
+  "name": "Agents the Hard Way — 01 Streaming",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "postCreateCommand": "corepack enable && pnpm install",
+  "secrets": {
+    "ANTHROPIC_API_KEY": {
+      "description": "Your own Anthropic API key. This lesson makes two short requests and costs well under one US cent.",
+      "documentationUrl": "https://console.anthropic.com/settings/keys"
+    }
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["NOTEBOOK.md"]
+    }
+  }
+}

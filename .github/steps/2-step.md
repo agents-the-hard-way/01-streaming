@@ -1,36 +1,31 @@
-## Step 2: (replace-me: STEP-NAME)
+## Step 2: Run the blocking call
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+`messages.create()` returns a promise of the complete `Message`. Its
+`content` is a list of blocks: `text`, and `tool_use` when the model wants
+to call a tool. The script never runs the tool; you only see the request
+for it.
 
-### 📖 Theory: (replace-me: Theory title)
+1. Run the script and save its output:
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+   ```bash
+   pnpm run lesson:01-before | tee runs/before.txt
+   ```
 
-(replace-me: Optional theory or background information relevant to this step)
+   Compare what you see with hypothesis 1. Don't edit the hypothesis.
 
-(replace-me: OPTIONAL Reference images from the `.github/images/` directory to support any part of the content)
+1. Commit and push the log:
 
-<img width="200" alt="descriptive alt text" src="../images/inflatocat.png" />
-
-
-### ⌨️ Activity: (replace-me: Activity title)
-
-1. (replace-me: First instruction)
-
-    (replace-me: Make sure to properly indent any multiline instructions)
-
-1. (replace-me: Second instruction)
-
-1. (replace-me: Additional instructions as needed)
+   ```bash
+   git add runs/before.txt
+   git commit -m "Step 2: blocking call"
+   git push
+   ```
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Having trouble?</summary><br/>
 
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
+- `Could not resolve authentication method`: the secret isn't reaching the
+  Codespace. Check its name and repository access, then rebuild the
+  container (**Command Palette → Codespaces: Rebuild Container**).
 
 </details>

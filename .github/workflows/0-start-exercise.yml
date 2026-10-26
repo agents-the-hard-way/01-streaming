@@ -1,11 +1,9 @@
 name: Step 0 # Start Exercise
 
 on:
-  workflow_dispatch:
-  # NOTE: Make sure the repository is a template before enabling this trigger.
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -17,13 +15,12 @@ env:
 
 jobs:
   start_exercise:
-    if: |
-      !github.event.repository.is_template
+    if: ${{ !github.event.repository.is_template }}
     name: Start Exercise
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.9.1
     with:
-      exercise-title: "(replace-me: Exercise title)"
-      intro-message: "(replace-me: Brief one line introduction message for the exercise)"
+      exercise-title: "Agents the Hard Way: 01 Token-level streaming"
+      intro-message: "Send the same request to Claude twice, blocking and streamed, and compare how the response arrives."
 
   post_next_step_content:
     name: Post next step content

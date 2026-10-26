@@ -1,35 +1,13 @@
-## Step 3: (replace-me: STEP-NAME)
+## Step 3: Predict the stream
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+`messages.stream()` sends the same request, but the response arrives as
+[server-sent events](https://docs.claude.com/en/docs/build-with-claude/streaming)
+while the model is still generating it.
 
-### 📖 Theory: (replace-me: Theory title)
+Read `src/streamingAfter.ts`: same request, now streamed.
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+1. In `NOTEBOOK.md`, under **2. Hypothesis**, write what you expect: what
+   appears in the terminal and when, and how the tool call's JSON arguments
+   reach you. At least 20 words.
 
-(replace-me: Optional theory or background information relevant to this step)
-
-### ⌨️ Activity: (replace-me: Activity title)
-
-1. (replace-me: First instruction)
-
-   (replace-me: Make sure to properly indent any multiline instructions)
-
-1. (replace-me: Second instruction)
-
-   (replace-me: Optionally reference images from the `.github/images/` directory to support any part of the content)
-
-   <img width="200" alt="descriptive alt text" src="../images/jetpacktocat.png" />
-
-1. (replace-me: Additional instructions as needed)
-
-<details>
-<summary>Having trouble? 🤷</summary><br/>
-
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
-
-</details>
+1. Commit and push `NOTEBOOK.md`.

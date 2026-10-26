@@ -1,36 +1,43 @@
-## Step 1: (replace-me: STEP-NAME)
+## Step 1: Set up and predict
 
-(replace-me: OPTIONAL Brief story or scenario to introduce the step)
+In this lesson you send the same request to Claude twice: once with
+`messages.create()`, once with `messages.stream()`, and compare what you
+see. Before running anything, you write down what you expect.
 
-(replace-me: OPTIONAL Reference images from the `.github/images/` directory to support any part of the content)
+### Set up
 
-<img width="200" alt="descriptive alt text" src="../images/inspectocat.png" />
+1. Add your Anthropic API key as a Codespaces secret: **github.com →
+   Settings → Codespaces → Secrets → New secret**, name `ANTHROPIC_API_KEY`,
+   value from the [Anthropic Console](https://console.anthropic.com/settings/keys),
+   repository access set to this repository. The lesson costs well under one
+   US cent.
 
-### 📖 Theory: (replace-me: Theory title)
+1. Open a Codespace on your copy:
 
-<!-- GitHub-styled notifications can be used outside of ordered lists. Available options are: NOTE, IMPORTANT, WARNING, TIP, CAUTION -->
-<!--
-> [!NOTE]
-> (Important note or additional information relevant to this section)
- -->
+   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
 
-(replace-me: Optional theory or background information relevant to this step)
+### Hypothesis 1
 
+Read `src/streamingBefore.ts`. It sends one prompt with three tools from
+`src/tools.ts` and prints the result.
 
-### ⌨️ Activity: (replace-me: Activity title)
+1. In `NOTEBOOK.md`, under **1. Hypothesis**, write what you expect:
+   when the call returns, what you see while waiting, and what the returned
+   content looks like. At least 20 words.
 
-1. (replace-me: First instruction)
+1. Commit and push:
 
-    (replace-me: Make sure to properly indent any multiline instructions)
-
-1. (replace-me: Second instruction)
-
-1. (replace-me: Additional instructions as needed)
+   ```bash
+   git add NOTEBOOK.md
+   git commit -m "Step 1: hypothesis"
+   git push
+   ```
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>Having trouble?</summary><br/>
 
-- (replace-me: Troubleshooting tip or hint)
-- (replace-me: Additional troubleshooting tips as needed)
+- Keep the `## 1. Hypothesis` heading unchanged and remove the placeholder
+  line.
+- If nothing happens after pushing, check the **Actions** tab.
 
 </details>
