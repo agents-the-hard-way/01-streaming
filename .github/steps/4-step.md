@@ -4,45 +4,36 @@ Same request as step 2, observed as it is generated.
 
 ### 📖 Theory: listening to the stream
 
-`client.messages.stream()` returns a stream object you subscribe to:
+`client.messages.stream()` returns a stream object straight away — no
+`await` — and you subscribe to what it emits:
 
 - `text` — fires with each piece of text as it arrives,
-- `streamEvent` — fires with every raw event; tool arguments come as
-  `content_block_delta` events whose `delta.type` is `input_json_delta`,
-  carrying a `partial_json` string,
+- `streamEvent` — fires with every raw server-sent event. Tool arguments
+  come as events whose `type` is `content_block_delta` and whose
+  `delta.type` is `input_json_delta`; the piece of JSON is in
+  `delta.partial_json`,
 - `finalMessage()` — resolves to the complete, assembled `Message`.
 
 See [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/streaming).
 
-### ⌨️ Activity: complete `src/streamingAfter.ts`
+### ⌨️ Activity: fill in two gaps
 
-1. Open `src/streamingAfter.ts` and replace the `TODO`. Same model, tools and
-   prompt as step 2, but using `client.messages.stream()`. The script
-   should:
-   - write each text delta to stdout as it arrives (without a newline after
-     each one, so you see it flow),
-   - for every `input_json_delta`, print **one line** in exactly this
-     format:
+`src/streamingAfter.ts` already prints the text as it streams and the final
+tool input at the end (the helpers are in `src/print.ts`). You write the two
+lines that are the point of this lesson.
 
-     ```
-     [fragment] <partial_json>
-     ```
-
-   - after `finalMessage()` resolves, find the `tool_use` block and print
-     its input as **one line** in exactly this format:
-
-     ```
-     [final] <JSON.stringify of the tool_use input>
-     ```
-
-   The exact line formats matter: the check glues every `[fragment]` back
-   together, parses it, and compares it with your `[final]` line.
-
+1. **TODO 1** — replace `undefined` with a call that sends the same
+   `request` as a stream.
+1. **TODO 2** — inside the `streamEvent` handler, when the event carries a
+   piece of tool-call JSON, pass that piece to `printFragment()`.
 1. Run it and save the output:
 
    ```bash
    pnpm run after | tee runs/after.txt
    ```
+
+   Look at the `[fragment]` lines. The check glues them together, parses the
+   result, and compares it with the `[final]` line.
 
 1. Commit and push both files:
 
@@ -53,17 +44,46 @@ See [Streaming messages](https://docs.claude.com/en/docs/build-with-claude/strea
    ```
 
 <details>
+<summary>💡 Hint for TODO 1</summary><br/>
+
+It's the streaming sibling of the method you used in step 2, with the same
+argument.
+
+<details>
+<summary>Show the answer</summary><br/>
+
+```ts
+return client.messages.stream(request);
+```
+
+</details>
+</details>
+
+<details>
+<summary>💡 Hint for TODO 2</summary><br/>
+
+Check two fields before using the event: its `type`, then its
+`delta.type`. The theory section above names both values. Checking them in
+that order also lets TypeScript know `delta.partial_json` exists.
+
+<details>
+<summary>Show the answer</summary><br/>
+
+```ts
+if (event.type === 'content_block_delta' && event.delta.type === 'input_json_delta') {
+  printFragment(event.delta.partial_json);
+}
+```
+
+</details>
+</details>
+
+<details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- **Only one fragment, or none?** Make sure you're filtering raw events for
-  `content_block_delta` with `delta.type === 'input_json_delta'`, and that
-  the model actually called `read_file` (check `runs/after.txt` for text
-  only).
-- **"fragments_assemble" fails?** Print each fragment exactly as received —
-  don't trim it or add quotes. Start every fragment line on a new line,
-  even if a text delta was printed just before it.
-- **Still stuck?** Ask Copilot for a hint, or compare with the reference in
-  [agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming)
-  — after you've tried.
+- **No `[fragment]` lines?** TODO 2 isn't matching any event. Temporarily
+  add `console.log(event.type)` in the handler to see what arrives.
+- **Only one fragment?** That can happen with a very short argument. Run it
+  again — the check needs at least two non-empty fragments.
 
 </details>

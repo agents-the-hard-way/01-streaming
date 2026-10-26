@@ -15,20 +15,21 @@ before you run anything, capture real output, and explain the difference.
 - **What you'll learn**: what `messages.create()` returns and when; how
   `messages.stream()` delivers the same response as events; how a tool
   call's JSON arguments arrive in fragments and get reassembled.
-- **What you'll build**: two short TypeScript scripts and a lab notebook
-  comparing your predictions with what really happened.
+- **What you'll build**: nothing big — you fill in three lines across two
+  ready-made scripts. The work is in predicting what they'll print and
+  explaining what they actually printed, in a lab notebook.
 - **Prerequisites**:
   - TypeScript and Node.js basics.
   - An [Anthropic API key](https://console.anthropic.com/settings/keys).
     This lesson makes two short requests and costs well under one US cent.
-- **How long**: about 45 minutes.
+- **How long**: about 30 minutes.
 
 In this exercise, you will:
 
 1. Set up a Codespace and predict what a blocking call returns.
-2. Write the blocking call and capture its output.
+2. Fill in the blocking call and capture its output.
 3. Predict how the same request looks when streamed.
-4. Write the streaming call and prove the tool-call fragments reassemble.
+4. Fill in the streaming call and prove the tool-call fragments reassemble.
 5. Compare predictions with reality and write your conclusions.
 
 ### How to start this exercise

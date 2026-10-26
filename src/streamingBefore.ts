@@ -1,8 +1,15 @@
 import 'dotenv/config';
 import Anthropic from '@anthropic-ai/sdk';
-import { tools } from './tools.js';
+import { request } from './request.js';
 
 const client = new Anthropic();
 
-// TODO (step 2): send the prompt with a blocking call, passing `tools`,
-// and print the returned content as pretty JSON.
+async function send(): Promise<Anthropic.Message | undefined> {
+  // ✏️ TODO: replace `undefined` with a blocking call that sends `request`.
+  return undefined;
+}
+
+const message = await send();
+if (!message) throw new Error('The TODO in src/streamingBefore.ts is still open.');
+
+console.log(JSON.stringify(message.content, null, 2));

@@ -12,27 +12,15 @@ one of your tools. `stop_reason` says why generation ended.
 Note what this lesson does **not** do: it never executes the tool. You only
 look at what the model asks for. Running tools comes in later lessons.
 
-Useful references:
+### ⌨️ Activity: fill in one line
 
-- [Tool use overview](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview)
-- [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript)
-- [Models overview](https://docs.claude.com/en/docs/about-claude/models/overview) —
-  use a small, cheap Claude Haiku model; look up its current ID here.
+Everything around the API call is already written for you: the request
+(model, tools, prompt) is in `src/request.ts`, and the script prints whatever
+comes back. You only write the call itself.
 
-### ⌨️ Activity: complete `src/streamingBefore.ts`
-
-1. Open `src/streamingBefore.ts`. The imports and the `Anthropic` client are
-   already there — the client reads `ANTHROPIC_API_KEY` from the
-   environment (your Codespaces secret, or a local `.env` via
-   `dotenv/config`). Replace the `TODO` so the script:
-   - calls `client.messages.create()` with your chosen model, a
-     `max_tokens` limit, the `tools` from `src/tools.ts`, and the prompt from
-     step 1 as a single user message,
-   - prints the returned `content` as pretty JSON.
-
-   Write it yourself. Copilot in this repo is set up as a mentor — ask it to
-   explain things, not to write the file.
-
+1. Open `src/streamingBefore.ts` and find the line marked `✏️ TODO`.
+1. Replace `undefined` with a call that sends `request` and waits for the
+   whole message.
 1. Run it and save the output:
 
    ```bash
@@ -50,15 +38,31 @@ Useful references:
    ```
 
 <details>
+<summary>💡 Hint</summary><br/>
+
+The method lives on `client.messages`, takes the request as its only
+argument, and returns a promise. `send()` is already `async`, so you can
+return that promise directly.
+
+<details>
+<summary>Show the answer</summary><br/>
+
+```ts
+return client.messages.create(request);
+```
+
+</details>
+</details>
+
+<details>
 <summary>Having trouble? 🤷</summary><br/>
 
+- `The TODO in src/streamingBefore.ts is still open.`: you're running the
+  file before replacing `undefined`.
 - `Could not resolve authentication method`: the secret isn't reaching the
   Codespace. Check that it's named exactly `ANTHROPIC_API_KEY` and has this
   repository selected, then rebuild the Codespace (**Command Palette →
   Codespaces: Rebuild Container**).
-- The check looks for `"type": "tool_use"` and `"name": "read_file"` in
-  `runs/before.txt`. If the model answered with text only, check that you
-  passed `tools` in the request.
 - Do not use `messages.stream()` in this file — that is step 4.
 
 </details>

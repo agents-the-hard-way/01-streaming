@@ -43,7 +43,8 @@ just your code.
 
 Look at `src/tools.ts` (the tools you will offer the model) and
 `sandbox/notes.txt` (the file you will ask it to read). You will send this
-prompt, with those tools, using `client.messages.create()`:
+prompt, with those tools, using `client.messages.create()` (the request is
+already set up for you in `src/request.ts`):
 
 > First say one sentence about what you're about to do, then read the file
 > at path sandbox/notes.txt.
