@@ -19,9 +19,10 @@ pnpm run lesson:01-before   # messages.create()
 pnpm run lesson:01-after    # messages.stream()
 ```
 
-Run the commands from the repository root: the prompt reads
-`sandbox/notes.txt` relative to the current directory. `.env` is git-ignored,
-so your key stays on your machine.
+Run the commands from the repository root so the scripts find `.env`. `.env`
+is git-ignored, so your key stays on your machine. The prompt only includes
+the path `sandbox/notes.txt`; the scripts print Claude's response and do not
+execute the tool call.
 
 Reference solution:
 [agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming).
