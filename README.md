@@ -25,3 +25,25 @@ here if a job failed.
 
 Reference solution:
 [agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming).
+
+## Run locally
+
+You need Node.js 22 or newer and pnpm (`corepack enable` enables it).
+
+```bash
+git clone https://github.com/agents-the-hard-way/01-streaming
+cd 01-streaming
+pnpm install
+cp .env.example .env   # then put your key after ANTHROPIC_API_KEY=
+```
+
+Write your hypothesis in `NOTEBOOK.md` first, then run the two scripts:
+
+```bash
+pnpm run lesson:01-before   # messages.create()
+pnpm run lesson:01-after    # messages.stream()
+```
+
+Run them from the repository root: the prompt reads `sandbox/notes.txt`
+relative to the current directory. `.env` is git-ignored, so your key stays
+on your machine.
