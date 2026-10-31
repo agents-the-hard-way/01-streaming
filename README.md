@@ -23,10 +23,5 @@ Run the commands from the repository root: the prompt reads
 `sandbox/notes.txt` relative to the current directory. `.env` is git-ignored,
 so your key stays on your machine.
 
-## The exercise
-
-Fill in the one `TODO` in `src/streamingAfter.ts`. Write your predictions and
-conclusions in `NOTEBOOK.md`.
-
 Reference solution:
 [agents-the-hard-way-solutions](https://github.com/agents-the-hard-way/agents-the-hard-way-solutions/tree/main/lessons/01-streaming).
